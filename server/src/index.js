@@ -6,8 +6,8 @@ require('dotenv').config()
 //body parser
 app.use(express.json())
 connection()
-const userRouter = require('./routes/user')
-app.use(userRouterS)
+const userRoute = require('./routes/user')
+app.use(userRoute)
 const port = process.env.PORT
 
 app.get('/', (req, res) => {

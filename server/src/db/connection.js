@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connection = async() => {
     try {
-        const isConnected = await mongoose.connect('mongodb://127.0.0.1:27017/BroadwaysProj')
+        const isConnected = await mongoose.connect('mongodb://127.0.0.1:27017/CinemaGharDb');
         if(isConnected){
             console.log("Connected to mongodb")
         }
