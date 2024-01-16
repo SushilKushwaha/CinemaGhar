@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose;
 
 const userSchema = new Schema({
-  phoneNumber: {type:String, unique: true, required: true}, 
+  phoneNumber: {type:String, required: true}, 
   fullName: String,
   role: {
     type: String,
