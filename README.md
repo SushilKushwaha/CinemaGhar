@@ -1,6 +1,6 @@
 # Online Movie Ticket Booking App 
 
-The Online Movie Ticket Booking App is a web application built with MERN Stack that allows users to book movie and show tickets. Users can browse available movies and shows,signin & signup, select seats, and make payments to secure their tickets.
+The Online Movie Ticket Booking App is a web application built with MERN Stack that allows users to book movie and show tickets. Users can browse available movies and shows, signin & signup, select seats, and make payments to secure their tickets.
 
 ## Features
 
