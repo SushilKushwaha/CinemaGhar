@@ -1,6 +1,7 @@
 import React from "react";
-import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Link, Button, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar} from "@nextui-org/react";
+import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar} from "@nextui-org/react";
 import Image from "next/image";
+import Link from 'next/link'
 
 export default function App() {
   return (
@@ -32,8 +33,11 @@ export default function App() {
 
       <NavbarContent as="div" className="items-center" justify="end">
       <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat"  >
+        
+        <Button  color="primary"  variant="flat"  >
+        <Link href="/login">
             Sign In
+          </Link>
           </Button>
         </NavbarItem>
     
