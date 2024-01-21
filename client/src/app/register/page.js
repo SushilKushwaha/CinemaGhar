@@ -1,75 +1,97 @@
 'use client'
-import React from 'react';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import {Input} from "@nextui-org/react";
-import styles from './styles.module.css'
+import React, { useState } from 'react';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
+import Link  from 'next/link';
 
-const SignupForm = () => {
-   const SignupSchema = Yup.object().shape({
-     email: Yup.string().email('Invalid email').required('Required'),
-   email: Yup.string().email('Invalid email').required('Required'),
- });
+function modal() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleOpen = () => {
+    setIsOpen(true);
+  };
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.id]: e.target.value,
+    });
+  };
  
- const registerUser = async(values)=> {
-
- const res=  await fetch('http://localhost:5000/register/',{
-    method: 'POST',
-    headers: {'Content-Type':'application/json' },
-    body: JSON.stringify(values)
-  })
-  const data = await res.json()
-  alert(data.msg)
- }
-  const formik = useFormik({
-    initialValues: {
-      phoneNumber: '',
-      email: '',
-      password: '',
-      role:''
-    },
-    validationSchema:SignupSchema,
-    onSubmit: values => {
-      registerUser(values)
-    },
-  });
-
   return (
-    <form  className={styles.formfields} onSubmit={formik.handleSubmit}>
-      <label htmlFor="firstName">phoneNumber</label>
-      <Input 
-       id="phoneNumber"
-       name="phoneNumber"
-       type="text"
-       onChange={formik.handleChange}
-       value={formik.values.phoneNumber}
-      label="phoneNumber" />
-        {formik?.errors.phoneNumber}
-      <Input 
-       id="email"
-       name="email"
-       type="text"
-       onChange={formik.handleChange}
-       value={formik.values.email}
-      label="email" />
-              {formik?.errors.email}
-         <Input 
-       id="password"
-       name="password"
-       type="password"
-       onChange={formik.handleChange}
-       value={formik.values.password}
-      label="password" />
-          <Input 
-       id="role"
-       name="role"
-       type="text"
-       onChange={formik.handleChange}
-       value={formik.values.role}
-      label="role" />
-      <button type="submit">Submit</button>
-    </form>
-  );
-};
+    <div>
+      <Button onClick={handleOpen}>Open Modal</Button>
+      <Modal isOpen={isOpen} onClose={handleClose} >
+        <ModalContent>
+          {(onClose) => (
+            <>
+              <ModalHeader className="flex flex-col gap-1">Sign Up</ModalHeader>
+              <ModalBody>
+                <p>Mobile Number</p>
+              <input
+                type="text"
+                maxlength="10" pattern="\d{10}"
+                placeholder='Enter your phone number'
+                className='border p-3 rounded-lg'
+                id='number'
+                onChange={handleChange}
+              />
+              <p>Email</p>
+              <input
+                type="email"
+                placeholder='Enter your email'
+                className='border p-3 rounded-lg'
+                id='email'
+                onChange={handleChange}
+              />
+              <p>Date of Birth</p>
+              <input
+                type="date"
+                placeholder='Enter your DOB'
+                className='border p-3 rounded-lg'
+                id='birthday'
+                onChange={handleChange}
+              />
+              <p>Full Name</p>
+              <input
+                type="text"
+                placeholder='Enter your fullName'
+                className='border p-3 rounded-lg'
+                id='name'
+                onChange={handleChange}
+              />
+              <p>Password</p>
+              <input
+                type="password"
+                placeholder='Enter your password'
+                className='border p-3 rounded-lg'
+                id='password'
+                onChange={handleChange}
+              />
 
-export default SignupForm
+              <div className='flex gap-2 mt-5'>
+                      <p>Have an account?</p>
+                      <Link href={"/login"}>
+                        <span className='text-blue-700'>Sign in</span>
+                      </Link>
+                    </div>
+
+              </ModalBody>
+              <ModalFooter>
+                <Link href='/login'>
+                <Button color="primary" onPress={onClose} className='uppercase'>
+                  sign up
+                </Button>
+                </Link>
+              </ModalFooter>
+            </>
+          )}
+        </ModalContent>
+      </Modal>
+    </div>
+  );
+}
+
+export default modal
