@@ -2,7 +2,7 @@ import React from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, DropdownItem, DropdownTrigger, Dropdown, DropdownMenu, Avatar} from "@nextui-org/react";
 import Image from "next/image";
 import Link from 'next/link'
-
+import Loginmodal from '@/app/login/loginmodal'
 export default function App() {
   return (
     <Navbar isBordered>
@@ -22,7 +22,7 @@ export default function App() {
               Customers
             </Link>
           </NavbarItem>
-          <NavbarItem className="items-center" justify="end">
+          <NavbarItem justify="end">
             <Link color="foreground" href="#">
               Integrations
             </Link>
@@ -33,12 +33,12 @@ export default function App() {
 
       <NavbarContent as="div" className="items-center" justify="end">
       <NavbarItem>
-        
-        <Button  color="primary"  variant="flat"  >
+        <Loginmodal/>
+        {/* <Button  color="primary"  variant="flat"  >
         <Link href="/login">
             Sign In
           </Link>
-          </Button>
+          </Button> */}
         </NavbarItem>
     
       </NavbarContent>

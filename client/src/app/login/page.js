@@ -126,6 +126,7 @@ function modal() {
               </div>
               </ModalBody>
               <ModalFooter>
+
                 <Button color="primary" onPress={onClose} className='uppercase'>
                   sign in
                 </Button>
