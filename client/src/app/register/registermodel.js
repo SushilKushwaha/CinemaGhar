@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
 import Link  from 'next/link';
+import Loginmodel from '@/app/login/loginmodal';
 
 function modal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,10 +20,11 @@ function modal() {
       [e.target.id]: e.target.value,
     });
   };
+
  
   return (
     <div>
-      <Button onClick={handleOpen}>Open Modal</Button>
+        <button onClick={handleOpen} className='text-blue-700'>Sign up</button>
       <Modal isOpen={isOpen} onClose={handleClose} >
         <ModalContent>
           {(onClose) => (
@@ -73,18 +75,14 @@ function modal() {
 
               <div className='flex gap-2 mt-5'>
                       <p>Have an account?</p>
-                      <Link href={"/login"}>
-                        <span className='text-blue-700'>Sign in</span>
-                      </Link>
+                      <Loginmodel />
                     </div>
 
               </ModalBody>
               <ModalFooter>
-                <Link href='/login'>
                 <Button color="primary" onPress={onClose} className='uppercase'>
                   sign up
                 </Button>
-                </Link>
               </ModalFooter>
             </>
           )}
