@@ -7,7 +7,7 @@ const initialState = {
   count: 0,
 }
 
-export const countSlice = createSlice({
+export const userSlice = createSlice({
   name: 'count',
     initialState,
   reducers: {
@@ -19,7 +19,7 @@ export const countSlice = createSlice({
 }});
 
 // this is for dispatch
-export const { increment } = countSlice.actions;
+export const { increment } = userSlice.actions;
 
 // this is for configureStore
-export default countSlice.reducer;
+export default userSlice.reducer;
