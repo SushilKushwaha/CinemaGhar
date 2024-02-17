@@ -23,7 +23,7 @@ function modal() {
  
   return (
     <div>
-      <Button onClick={handleOpen} color="primary"  variant="flat" >Sign In</Button>
+      <button onClick={handleOpen} className='text-blue-700'  variant="flat" >Sign In</button>
       <Modal isOpen={isOpen} onClose={handleClose} >
         <ModalContent>
           {(onClose) => (
