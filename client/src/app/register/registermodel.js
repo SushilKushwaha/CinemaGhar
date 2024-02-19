@@ -1,10 +1,24 @@
 'use client'
 import React, { useState } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
-import Link  from 'next/link';
 import Loginmodel from '@/app/login/loginmodal';
+import { useFormik } from 'formik';
 
-function modal() {
+
+const SignupForm = () => {
+  const formik = useFormik({
+    initialValues: {
+      mobileNumber: '',
+      email: '',
+      dateOfBirth: '',
+      fullName: '',
+      password: '',
+    },
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+  
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -24,6 +38,7 @@ function modal() {
  
   return (
     <div>
+       <form onSubmit={formik.handleSubmit}>
         <button onClick={handleOpen} className='text-blue-700'>Sign up</button>
       <Modal isOpen={isOpen} onClose={handleClose} >
         <ModalContent>
@@ -88,8 +103,10 @@ function modal() {
           )}
         </ModalContent>
       </Modal>
+      </form>
     </div>
   );
 }
 
-export default modal
+export default SignupForm
+

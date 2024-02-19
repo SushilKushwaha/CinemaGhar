@@ -1,10 +1,29 @@
 'use client'
 import React, { useState } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
-import Link  from 'next/link';
 import RegisterModel from '@/app/register/registermodel';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 
-function modal() {
+  
+
+  const SigninForm = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+      email: Yup.string().email('Invalid email address').required('Required'),
+      validationSchema: Yup.object({
+        password: Yup.string()
+          .min(6, 'Must be 6 character')
+          .required('Required'),
+    }),
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -14,15 +33,11 @@ function modal() {
   const handleClose = () => {
     setIsOpen(false);
   };
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
-  };
+  
  
   return (
     <div>
+      <form onSubmit={formik.handleSubmit}>
       <button onClick={handleOpen} className='text-blue-700'  variant="flat" >Sign In</button>
       <Modal isOpen={isOpen} onClose={handleClose} >
         <ModalContent>
@@ -35,15 +50,23 @@ function modal() {
                 placeholder='email'
                 className='border p-3 rounded-lg'
                 id='email'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
               />
+               
               <input
                 type="password"
                 placeholder='password'
                 className='border p-3 rounded-lg'
                 id='password'
-                onChange={handleChange}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+                errorMessage={formik.errors?.email}
+                isRequired
               />
+              
 
               <div className='flex gap-2 mt-5'>
                       <p>Don't have an account?</p>
@@ -55,12 +78,13 @@ function modal() {
                   sign in
                 </Button>
               </ModalFooter>
-            </>
+              </>
           )}
         </ModalContent>
       </Modal>
+      </form>
     </div>
   );
 }
 
-export default modal
+export default SigninForm
