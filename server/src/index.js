@@ -11,8 +11,10 @@ require('dotenv').config()
 //body parser
 app.use(express.json());
 connection();
-const userRouter = require('./routes/user')
-app.use("/user", userRouter)
+const userRouter = require('./routes/user');
+const adminRouter = require('./routes/admin');
+app.use("/user", userRouter);
+app.use("/admin", adminRouter);
 const port = process.env.PORT
 
 app.get('/', (req, res) => {
