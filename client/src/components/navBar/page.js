@@ -10,7 +10,7 @@ export default function App() {
     <Navbar isBordered>
       <NavbarContent justify="start">
         <NavbarBrand className="mr-4">
-          <Image src="/cinemaghar.jpg" width = "150" height="150" />
+          <Image src="/cinemaghar.jpg" width = "150" height="150" alt="" />
           <p className="text-orange-600 p-1 text-2xl">CinemaGhar</p>
         </NavbarBrand>
         
@@ -28,7 +28,8 @@ export default function App() {
       <NavbarItem>
       <Dropdown>
       <DropdownTrigger>
-       Movies
+        <button>Movies</button>
+       
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
         <DropdownItem key="new">Now Showing</DropdownItem>

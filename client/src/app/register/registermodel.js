@@ -3,9 +3,25 @@ import React, { useState } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button } from "@nextui-org/react";
 import Loginmodel from '@/app/login/loginmodal';
 import { useFormik } from 'formik';
+import { useRouter } from 'next/navigation'
 
 
 const SignupForm = () => {
+
+  const router = useRouter()
+
+const saveRegisterInfo = async(values) =>{
+  const res=  await fetch(`http://localhost:5000/register/`,{
+    method: 'POST',
+    headers: {'Content-Type':'application/json' },
+    body: JSON.stringify(values)
+  })
+  const data = await res.json()
+  if(res.status == 200) {
+    router.push('/login')
+  }
+}
+
   const formik = useFormik({
     initialValues: {
       mobileNumber: '',
@@ -15,7 +31,7 @@ const SignupForm = () => {
       password: '',
     },
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      saveRegisterInfo(values);
     },
   });
   
@@ -28,19 +44,13 @@ const SignupForm = () => {
   const handleClose = () => {
     setIsOpen(false);
   };
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value,
-    });
-  };
 
  
   return (
-    <div>
-       <form onSubmit={formik.handleSubmit}>
+    
+    <form onSubmit={formik.handleSubmit}>
         <button onClick={handleOpen} className='text-blue-700'>Sign up</button>
-      <Modal isOpen={isOpen} onClose={handleClose} >
+      <Modal  isOpen={isOpen} onClose={handleClose} >
         <ModalContent>
           {(onClose) => (
             <>
@@ -49,35 +59,44 @@ const SignupForm = () => {
                 <p>Mobile Number</p>
               <input
                 type="text"
-                maxlength="10" pattern="\d{10}"
                 placeholder='Enter your phone number'
                 className='border p-3 rounded-lg'
-                id='number'
-                onChange={handleChange}
+                id='mobileNumber'
+                name="mobileNumber"
+                onChange={formik.handleChange}
+                value ={formik.values.mobileNumber}
               />
+              {formik?.errors.mobileNumber}
               <p>Email</p>
               <input
                 type="email"
                 placeholder='Enter your email'
                 className='border p-3 rounded-lg'
                 id='email'
-                onChange={handleChange}
+                name="email"
+                onChange={formik.handleChange}
+                value={formik.values.email}
               />
+              {formik?.errors.email}
               <p>Date of Birth</p>
               <input
                 type="date"
                 placeholder='Enter your DOB'
                 className='border p-3 rounded-lg'
-                id='birthday'
-                onChange={handleChange}
+                id='dateOfBirth'
+                name="dateOfBirth"
+                onChange={formik.handleChange}
+                value={formik.values.dateOfBirth}
               />
               <p>Full Name</p>
               <input
                 type="text"
                 placeholder='Enter your fullName'
                 className='border p-3 rounded-lg'
-                id='name'
-                onChange={handleChange}
+                id='fullName'
+                name="fullName"
+                onChange={formik.handleChange}
+                value={formik.values.fullName}
               />
               <p>Password</p>
               <input
@@ -85,7 +104,9 @@ const SignupForm = () => {
                 placeholder='Enter your password'
                 className='border p-3 rounded-lg'
                 id='password'
-                onChange={handleChange}
+                name="password"
+                onChange={formik.handleChange}
+                value={formik.values.password}
               />
 
               <div className='flex gap-2 mt-5'>
@@ -95,7 +116,7 @@ const SignupForm = () => {
 
               </ModalBody>
               <ModalFooter>
-                <Button color="primary" onPress={onClose} className='uppercase'>
+                <Button type='submit' color="primary" onPress={onClose} className='uppercase'>
                   sign up
                 </Button>
               </ModalFooter>
@@ -103,8 +124,8 @@ const SignupForm = () => {
           )}
         </ModalContent>
       </Modal>
-      </form>
-    </div>
+    </form>
+    
   );
 }
 

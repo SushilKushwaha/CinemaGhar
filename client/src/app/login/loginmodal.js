@@ -8,19 +8,23 @@ import * as Yup from 'yup';
   
 
   const SigninForm = () => {
+    const saveLoginInfo = async(values) =>{
+
+    const res=  await fetch(`http://localhost:5000/login/`,{
+    method: 'POST',
+    headers: {'Content-Type':'application/json' },
+    body: JSON.stringify(values)
+  })
+    }
+
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
-      email: Yup.string().email('Invalid email address').required('Required'),
-      validationSchema: Yup.object({
-        password: Yup.string()
-          .min(6, 'Must be 6 character')
-          .required('Required'),
-    }),
+      
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      saveLoginInfo(values);
     },
   });
 
@@ -36,8 +40,7 @@ import * as Yup from 'yup';
   
  
   return (
-    <div>
-      <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={formik.handleSubmit}>
       <button onClick={handleOpen} className='text-blue-700'  variant="flat" >Sign In</button>
       <Modal isOpen={isOpen} onClose={handleClose} >
         <ModalContent>
@@ -51,9 +54,9 @@ import * as Yup from 'yup';
                 className='border p-3 rounded-lg'
                 id='email'
                 onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
                 value={formik.values.email}
               />
+              {formik?.errors.email}
                
               <input
                 type="password"
@@ -61,10 +64,7 @@ import * as Yup from 'yup';
                 className='border p-3 rounded-lg'
                 id='password'
                 onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
                 value={formik.values.password}
-                errorMessage={formik.errors?.email}
-                isRequired
               />
               
 
@@ -82,8 +82,7 @@ import * as Yup from 'yup';
           )}
         </ModalContent>
       </Modal>
-      </form>
-    </div>
+    </form>
   );
 }
 
