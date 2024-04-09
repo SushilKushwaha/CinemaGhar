@@ -13,8 +13,13 @@ app.use(express.json());
 connection();
 const userRouter = require('./routes/user');
 const adminRouter = require('./routes/admin');
+const movieRouter = require('./routes/movie');
+
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
+app.use("/movie", movieRouter);
+
+
 const port = process.env.PORT
 
 app.get('/', (req, res) => {
