@@ -44,4 +44,17 @@ return res.status(201).json({ movie });
 
 };
 
-module.exports = { addMovie}
+const getMovies = async (req, res, next) => {
+  let movies;
+  try {
+    movies = await Movie.find();
+  } catch (error) {
+    return console.log(err);
+  }
+  if(!movies) {
+    return res.status(500).json({ message: "Request Failed" });
+  }
+  return res.status(200).json({ movies })
+};
+
+module.exports = { addMovie, getMovies}
