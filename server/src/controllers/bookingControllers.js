@@ -53,4 +53,18 @@ const newBooking = async (req, res, next) => {
     return res.status(201).json({ booking });
 };
 
-module.exports = {newBooking};
+const getBookingById = async (req, res, next) => {
+  const id = req.params.id;
+  let booking;
+  try {
+    booking = await Booking.findById(id);
+  } catch (error) {
+    return console.log(error);
+  }
+  if (!booking) {
+    return res.status(500).json({ message: "Unexpected Error" });
+  }
+  return res.status(200).json({ booking });
+};
+
+module.exports = {newBooking, getBookingById};
