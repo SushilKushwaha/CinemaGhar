@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
 const Movie = require('../models/Movie');
+const mongoose = require("mongoose");
+const Admin = require('../models/Admin');
+
 
 
 const addMovie = async (req, res, next) => {
@@ -32,14 +35,42 @@ if(!title && title.trim() === "" && !description && description.trim() == "" && 
 let movie;
 try {
   movie = new Movie({ title, description, actors,releaseDate: new Date(`${releaseDate}`), posterUrl, featured, admin: adminId, });
-  movie = await movie.save();
+
+  // const session = await mongoose.startSession();
+  // const adminUser = await Admin.findById(adminId);
+  // session.startTransaction();
+
+  // await movie.save({ session });
+  // adminUser.addedmovies.push(movie);
+  // await adminUser.save({ session });
+  // await session.commitTransaction();
+  
+  try {
+    const adminUser = await Admin.findById(adminId);
+    await movie.save();
+    adminUser.addedmovies.push(movie);
+    await adminUser.save();
+    //console.log('Data saved successfully.');
 } catch (error) {
-  return console.log(err);
+    console.error('Error saving data:', error);
+    // Rollback changes if necessary
+    // For example, you can remove the recently added movie
+    if (adminUser && adminUser.addedmovies.length > 0) {
+        adminUser.addedmovies.pop();
+        await adminUser.save();
+        //console.log('Rollback completed successfully.');
+    }
+}
+
+
+} 
+catch (error) {
+  return console.log(error);
 }
 
 if(!movie) {
   return res.status(500).json({ message: "Request Failed" });
-}
+  }
 return res.status(201).json({ movie });
 
 };

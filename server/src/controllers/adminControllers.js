@@ -61,4 +61,17 @@ const token = jwt.sign({ id: existingAdmin._id }, process.env.SECRET_KEY, { expi
 return res.status(200).json({ message: "Admin Login Successfull", token, id: existingAdmin._id });
 };
 
-module.exports = {addAdmin, adminSignIn}
+const getAdmins = async (req, res, next) => {
+  let admins;
+  try {
+    admins = await Admin.find();
+  } catch (error) {
+    return console.log(error);
+  }
+  if (!admins) {
+    return res.status(500).json({ message: "Internal server Error" });
+  }
+  return res.status(200).json({ admins });
+};
+
+module.exports = {addAdmin, adminSignIn, getAdmins}

@@ -7,6 +7,6 @@ movieRouter.post('/', addMovie);
 movieRouter.get('/', getAllMovies);
 movieRouter.get('/:id', getMoviesById);
 
-
+// movie delete route not created
 
 module.exports = movieRouter;
