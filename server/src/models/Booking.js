@@ -4,7 +4,8 @@ const  Schema  = mongoose.Schema;
 const BookingSchema = new Schema({
   
  movie: {
-  type: String,
+  type: mongoose.Types.ObjectId,
+  ref: "Movie",
   required: true,
  },
  date: {
@@ -16,7 +17,8 @@ const BookingSchema = new Schema({
   required: true,
  },
  user: {
-  type: String,
+  type: mongoose.Types.ObjectId,
+  ref: "User",
   required: true,
  },
 
