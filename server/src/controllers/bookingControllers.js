@@ -67,4 +67,37 @@ const getBookingById = async (req, res, next) => {
   return res.status(200).json({ booking });
 };
 
-module.exports = {newBooking, getBookingById};
+const deleteBookingById = async (req, res, next) => {
+  const id = req.params.id;
+  let booking; 
+  try {
+    booking = await Booking.findByIdAndDelete(id).populate("user movie");
+    console.log(booking);
+
+    try {
+      booking.user.bookings.pull(booking);
+      await booking.user.save();
+      booking.movie.bookings.pull(booking);
+      await booking.movie.save();
+    } catch (error) {
+      console.error('Error saving data: ', error);
+      if (booking.user && booking.user.bookings.length > 0) {
+        booking.user.bookings.pop();
+        await booking.user.save();
+      }
+      if (booking.movie && booking.movie.bookings.length > 0) {
+        booking.movie.bookings.pop();
+        await booking.movie.save();
+      }
+    }
+
+  } catch (error) {
+    return console.log(error);
+  }
+  if (!booking) {
+    return res.status(500).json({ message: "Unable to Delete" });
+  }
+  return res.status(200).json({ message: "Successfully Booking Deleted" });
+};
+
+module.exports = {newBooking, getBookingById, deleteBookingById};
