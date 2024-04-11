@@ -1,4 +1,5 @@
 
+const Booking = require('../models/Booking');
 const User = require('../models/User')
 const bcrypt = require('bcryptjs');
 
@@ -101,4 +102,18 @@ const signIn = async (req, res, next) => {
     return res.status(200).json({ message: "Login Successfull" });
 };
 
-module.exports = {signUp, getAllUsers, updateUser, deleteUser, signIn}
+const getBookingsOfUser = async (req, res, next) => {
+    const id = req.params.id;
+    let bookings;
+    try {
+        bookings = await Booking.find({ user: id });
+    } catch (error) {
+        return console.log(error);
+    }
+    if (!bookings) {
+        return res.status(500).json({ message: "Unable to get Bookings" });
+    }
+    return res.status(200).json({ bookings });
+};
+
+module.exports = {signUp, getAllUsers, updateUser, deleteUser, signIn, getBookingsOfUser}
