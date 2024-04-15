@@ -6,6 +6,7 @@ import Image from "next/image";
 import {FaSearch} from 'react-icons/fa';
 import Loginmodal from '@/app/login/loginmodal'
 import { getAllMovies } from "@/api-helpers/api-helpers";
+import { Link } from "react-router-dom";
 export default function App() {
 
   const [movies, setMovies] = useState([]);
@@ -48,11 +49,10 @@ export default function App() {
       <Dropdown>
       <DropdownTrigger>
         <button>Movies</button>
-       
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
-        <DropdownItem key="new">Now Showing</DropdownItem>
-        <DropdownItem key="copy">Coming Soon</DropdownItem>
+        <DropdownItem key="new" href="/movies">Now Showing</DropdownItem>
+        <DropdownItem key="copy" href="/movies">Coming Soon</DropdownItem>
         
       </DropdownMenu>
     </Dropdown>
