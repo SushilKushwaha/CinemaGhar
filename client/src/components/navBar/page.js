@@ -23,8 +23,6 @@ export default function App() {
           <Image src="/cinemaghar.jpg" width = "150" height="150" alt="" />
           <p className="text-orange-600 p-1 text-2xl">CinemaGhar</p>
         </NavbarBrand>
-        
-        
       </NavbarContent>
 
       <NavbarContent as="div" className="items-center" justify="end">
