@@ -1,7 +1,7 @@
 import { BrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
-import TailEnd from "./components/Footer";
 import {NextUIProvider} from "@nextui-org/react";
+import Footers from "./components/Footer";
 
 
 
@@ -11,7 +11,7 @@ function App() {
     <NextUIProvider>
         <BrowserRouter>
         <Header />
-            <TailEnd />
+        <Footers />
     </BrowserRouter>  
     </NextUIProvider>
   

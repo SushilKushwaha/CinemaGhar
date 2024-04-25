@@ -3,11 +3,14 @@
 import { Footer } from 'flowbite-react';
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
 
-export default function Component() {
+
+const Footers = () => {
+
+
   return (
     <Footer className='bg-zinc-300'>
       <div className="w-full">
-        <div className="grid w-full grid-cols-2 gap-8 px-6 py-8 md:grid-cols-4">
+        <div className="grid w-full grid-cols-2 gap-8 px-6 py-8 md:grid-cols-4 ">
           <div>
             <Footer.Title title="Company" />
             <Footer.LinkGroup col>
@@ -55,3 +58,5 @@ export default function Component() {
     </Footer>
   );
 }
+
+export default Footers;

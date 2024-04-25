@@ -6,9 +6,8 @@ import { getAllMovies } from "../api-helpers/api-helpers";
 
 import {FaSearch} from 'react-icons/fa';
 
-import { Link } from "react-router-dom";
 
-export default function App() {
+const Header = () => {
 
   const [movies, setMovies] = useState([]);
 
@@ -60,4 +59,7 @@ export default function App() {
       </NavbarContent>
     </Navbar>
   );
-}
+
+};
+
+export default Header;
