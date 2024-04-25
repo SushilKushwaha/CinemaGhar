@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import {Navbar,Image, NavbarBrand, NavbarContent, NavbarItem, Input, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, Avatar} from "@nextui-org/react";
+import { getAllMovies } from "../api-helpers/api-helpers";
 
 import {FaSearch} from 'react-icons/fa';
 
@@ -9,11 +10,11 @@ import { Link } from "react-router-dom";
 
 export default function App() {
 
-  //const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
 
-  // useEffect(() => {
-  //   getAllMovies().then((data) => setMovies(data.movies)).catch((error) => console.log(error));
-  // }, []);
+  useEffect(() => {
+    getAllMovies().then((data) => setMovies(data.movies)).catch((error) => console.log(error));
+  }, []);
 
   return (
     
@@ -33,11 +34,11 @@ export default function App() {
         className='bg-transparent focus:outline-none w-24 sm:w-64' 
         list="movieOptions" 
     />
-    {/* <datalist id="movieOptions"> 
+    <datalist id="movieOptions"> 
         {movies && movies.map((option) => ( 
             <option key={option._id} value={option.title} /> 
         ))}
-    </datalist> */}
+    </datalist>
     <button>
         <FaSearch className='text-slate-600' />
     </button>
