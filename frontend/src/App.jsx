@@ -12,8 +12,7 @@ import Login from "./pages/Login";
 function App() {
 
   return <BrowserRouter>
-    <NextUIProvider>
-       
+    
         <Header />
         
         <section>
@@ -27,8 +26,6 @@ function App() {
         </section>
         
         <Footers />
-      
-    </NextUIProvider>
     </BrowserRouter>
   
 };

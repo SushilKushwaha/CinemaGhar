@@ -1,7 +1,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import {Navbar,Image, NavbarBrand, NavbarContent, NavbarItem, Input, Dropdown, DropdownTrigger, DropdownMenu, DropdownItem, Button, Avatar} from "@nextui-org/react";
+import {Navbar,Image, NavbarBrand, NavbarContent, NavbarItem} from "@nextui-org/react";
 import { getAllMovies } from "../api-helpers/api-helpers";
 import {FaSearch} from 'react-icons/fa';
 import Login from '../pages/Login'
@@ -22,8 +22,8 @@ const Header = () => {
       <Link to='/' >
       <NavbarContent justify="start">
         <NavbarBrand className="mr-4">
-          <Image src="/cinemaghar.jpg" width = "150" height="150" alt="" />
-          <p className="text-orange-600 p-1 text-2xl">CinemaGhar</p>
+          <Image src="/cinemaghar.jpg" width = "150" height="150" alt="Logo" />
+          {/* <p className="text-orange-600 p-1 text-2xl">CinemaGhar</p> */}
         </NavbarBrand>
       </NavbarContent>
       </Link>

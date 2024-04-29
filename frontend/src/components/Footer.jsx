@@ -1,5 +1,6 @@
 
 
+import { Image } from '@nextui-org/react';
 import { Footer } from 'flowbite-react';
 import { BsDribbble, BsFacebook, BsGithub, BsInstagram, BsTwitter } from 'react-icons/bs';
 
@@ -46,6 +47,7 @@ const Footers = () => {
           </div>
         </div>
         <div className="w-full bg-orange-400 px-4 py-6 sm:flex sm:items-center sm:justify-between">
+        <Image src="/cinemaghar.jpg" width = "150" height="150" alt="Logo" />
           <Footer.Copyright href="#" by="CinemaGhar" year={2024} />
           <div className="mt-4 flex space-x-6 sm:mt-0 sm:justify-center">
             <Footer.Icon href="#" icon={BsFacebook} />
