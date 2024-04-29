@@ -19,7 +19,6 @@ export default {
   plugins: [
     nextui(),
     flowbite.plugin(),
-    require('@tailwindcss/line-clamp'),
     // ...
   ],
 };
