@@ -14,3 +14,16 @@ export const getAllMovies = async () => {
   return data;
  
 };
+
+export const getAllNextMovies = async () => {
+
+  const res = await axios.get("http://localhost:5000/nextmovie").catch((error) => console.log(error));
+
+  if (res.status !== 200) {
+    return console.log("No Data");
+  }
+
+  const data = await res.data;
+  return data;
+ 
+};

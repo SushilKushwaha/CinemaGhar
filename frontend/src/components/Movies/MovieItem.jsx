@@ -5,7 +5,7 @@ const MovieItem = ({title, releaseDate, posterUrl, id}) => {
   return (
     <Card sx={{ width: 300, height: 350, borderRadius: 5, ":hover": { boxShadow: "10px 10px 20px #ccc",}, }}>
       <CardMedia
-        sx={{ height: 300, width: 300,}}
+        sx={{ height: 280, width: 300,}}
         image={posterUrl}
         alt ={title}
       />

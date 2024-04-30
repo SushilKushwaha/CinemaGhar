@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import { getAllMovies } from "../api-helpers/api-helpers";
+import { getAllMovies, getAllNextMovies,  } from "../api-helpers/api-helpers";
 import MovieItem from './Movies/MovieItem';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore from 'swiper';
@@ -14,10 +14,15 @@ SwiperCore.use([Navigation]);
 const HomePage = () => {
 
   const [movies, setMovies] = useState([]);
+  const [nextmovies, setNextMovies] = useState([]);
 
   useEffect(() => {
       getAllMovies().then((data) => setMovies(data.movies)).catch((error) => console.log(error));
   }, []);
+
+  useEffect(() => {
+    getAllNextMovies().then((data) => setNextMovies(data.nextmovies)).catch((error) => console.log(error));
+}, []);
   
 
   return (
@@ -65,8 +70,8 @@ const HomePage = () => {
       </Typography>
     </Box>
     <Box justifyContent={"center"} className="gap-3 flex flex-wrap w-500 my-4">
-      {[1,2,3,4].map((item) => ( <MovieItem key={item} />
-    ))}
+    {nextmovies && nextmovies.slice(0,4).map((movie, index) =>  <MovieItem id={movie.id} title={movie.title} posterUrl={movie.posterUrl} releaseDate={movie.releaseDate} key={index} />
+    )}
     </Box>
     <Link to="/movies" >
     <Box display="flex" padding={4} margin="auto">
