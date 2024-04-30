@@ -15,11 +15,13 @@ const userRouter = require('./routes/user');
 const adminRouter = require('./routes/admin');
 const movieRouter = require('./routes/movie');
 const bookingRouter = require('./routes/booking');
+const nextMovieRouter = require('./routes/nextMovie');
 
 
 app.use("/user", userRouter);
 app.use("/admin", adminRouter);
 app.use("/movie", movieRouter);
+app.use("/nextmovie", nextMovieRouter);
 app.use("/booking", bookingRouter);
 
 const port = process.env.PORT
