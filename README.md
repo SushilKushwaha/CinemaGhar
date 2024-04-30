@@ -1,6 +1,10 @@
-# Online Movie Ticket Booking App 
+# Online Movie Ticket Booking App
 
 The Online Movie Ticket Booking App is a web application built with MERN Stack that allows users to book movie and show tickets. Users can browse available movies and shows, signin & signup, select seats, and make payments to secure their tickets.
+
+# HomePage
+
+![Alt Text](/frontend/public/screencapture-localhost-5173-2024-04-30-14_26_03.png)
 
 ## Features
 
@@ -17,3 +21,26 @@ The Online Movie Ticket Booking App is a web application built with MERN Stack t
 - React: To build user interfaces for web applications, enabling the creation of interactive and dynamic UI components efficiently.
 - NodeJs: To execute server-side JavaScript, facilitating the development of scalable and high-performance web applications.
 - CSS: Cascading Style Sheets for styling the app.
+
+# To run the project
+
+## Client-side usage(PORT: 5173)
+
+$ cd frontend // go to frontend folder
+$ yarn # or npm i // npm install packages
+$ npm run dev // run it locally
+
+## Server-side usage(PORT: 5000)
+
+Prepare your secret
+run the script at the first level:
+
+(You need to add a JWT_SECRET in .env to connect to MongoDB)
+
+// in the root level
+$ cd server
+$ echo "JWT_SECRET=YOUR_JWT_SECRET" >> src/.env
+Start
+$ cd server // go to server folder
+$ npm i // npm install packages
+$ npm run dev // run it locally

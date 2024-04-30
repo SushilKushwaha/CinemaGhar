@@ -3,9 +3,9 @@ import React from 'react'
 
 const MovieItem = ({title, releaseDate, posterUrl, id}) => {
   return (
-    <Card sx={{ width: 300, height: 350, borderRadius: 5, ":hover": { boxShadow: "10px 10px 20px #ccc",}, }}>
+    <Card sx={{ width: 300, height: 360, borderRadius: 5, ":hover": { boxShadow: "10px 10px 20px #ccc",}, }}>
       <CardMedia
-        sx={{ height: 280, width: 300,}}
+        sx={{ height: 300, width: 300,}}
         image={posterUrl}
         alt ={title}
       />
@@ -16,7 +16,7 @@ const MovieItem = ({title, releaseDate, posterUrl, id}) => {
         <Typography variant='body2' color="text.secondary">
         {new Date(releaseDate).toDateString()}
       </Typography>
-        <Button size="small">buy</Button>
+        <Button size="small">Book</Button>
       </CardContent>
       
     </Card>
