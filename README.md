@@ -24,23 +24,23 @@ The Online Movie Ticket Booking App is a web application built with MERN Stack t
 
 # To run the project
 
-## Client-side usage(PORT: 5173)
+## Client-side usage(PORT: 5173) <br />
 
-$ cd frontend // go to frontend folder
-$ yarn # or npm i // npm install packages
-$ npm run dev // run it locally
+$ cd frontend // go to frontend folder <br />
+$ yarn # or npm i // npm install packages <br />
+$ npm run dev // run it locally <br />
 
 ## Server-side usage(PORT: 5000)
 
-Prepare your secret
-run the script at the first level:
+Prepare your secret <br />
+run the script at the first level: <br />
 
-(You need to add a JWT_SECRET in .env to connect to MongoDB)
+(You need to add a JWT_SECRET in .env to connect to MongoDB) <br />
 
-// in the root level
-$ cd server
-$ echo "JWT_SECRET=YOUR_JWT_SECRET" >> src/.env
-Start
-$ cd server // go to server folder
-$ npm i // npm install packages
+// in the root level <br />
+$ cd server <br />
+$ echo "JWT_SECRET=YOUR_JWT_SECRET" >> src/.env <br />
+Start <br />
+$ cd server // go to server folder <br />
+$ npm i // npm install packages <br />
 $ npm run dev // run it locally
