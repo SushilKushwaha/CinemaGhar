@@ -54,7 +54,7 @@ const HomePage = () => {
       </Typography>
     </Box>
     <Box justifyContent={"center"} className="gap-3 flex flex-wrap w-500 ">
-      {movies && movies.slice(0,4).map((movie, index) =>  <MovieItem id={movie.id} title={movie.title} posterUrl={movie.posterUrl} releaseDate={movie.releaseDate} key={index} />
+      {movies && movies.slice(0,4).map((movie, index) =>  <MovieItem id={movie._id} title={movie.title} posterUrl={movie.posterUrl} releaseDate={movie.releaseDate} key={index} />
     )}
     </Box>
     <Link to="/movies" >
@@ -70,7 +70,7 @@ const HomePage = () => {
       </Typography>
     </Box>
     <Box justifyContent={"center"} className="gap-3 flex flex-wrap w-500 my-4">
-    {nextmovies && nextmovies.slice(0,4).map((movie, index) =>  <MovieItem id={movie.id} title={movie.title} posterUrl={movie.posterUrl} releaseDate={movie.releaseDate} key={index} />
+    {nextmovies && nextmovies.slice(0,4).map((movie, index) =>  <MovieItem id={movie._id} title={movie.title} posterUrl={movie.posterUrl} releaseDate={movie.releaseDate} key={index} />
     )}
     </Box>
     <Link to="/movies" >
