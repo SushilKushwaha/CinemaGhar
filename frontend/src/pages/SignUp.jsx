@@ -9,17 +9,17 @@ import Login from '../pages/Login';
 const SignupForm = () => {
 
 
-// const saveRegisterInfo = async(values) =>{
-//   const res=  await fetch(`http://localhost:5000/register/`,{
-//     method: 'POST',
-//     headers: {'Content-Type':'application/json' },
-//     body: JSON.stringify(values)
-//   })
-//   const data = await res.json()
-//   if(res.status == 200) {
-//     router.push('/login')
-//   }
-// }
+const saveRegisterInfo = async(values) =>{
+  const res=  await fetch(`http://localhost:5000/user/signin/`,{
+    method: 'POST',
+    headers: {'Content-Type':'application/json' },
+    body: JSON.stringify(values)
+  })
+  const data = await res.json()
+  if(res.status == 200) {
+    router.push('/login')
+  }
+}
 
   const formik = useFormik({
     initialValues: {
@@ -30,7 +30,8 @@ const SignupForm = () => {
       password: '',
     },
     onSubmit: values => {
-      //saveRegisterInfo(values);
+      console.log(values);
+      saveRegisterInfo(values);
     },
   });
   
@@ -43,6 +44,7 @@ const SignupForm = () => {
   const handleClose = () => {
     setIsOpen(false);
   };
+  console.log(formik);
 
  
   return (

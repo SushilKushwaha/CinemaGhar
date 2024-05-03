@@ -38,6 +38,7 @@ import Register from '../pages/SignUp';
     setIsOpen(false);
   };
   
+  
  
   return (
     <form onSubmit={formik.handleSubmit}>

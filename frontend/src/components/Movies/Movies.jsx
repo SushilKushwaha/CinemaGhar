@@ -24,7 +24,7 @@ const Movies = () => {
         Now Showing
       </Typography>
     </Box>
-    <Box justifyContent={"center"} className="gap-3 flex flex-wrap w-500 ">
+    <Box justifyContent={"center"} className="gap-3 flex flex-wrap  w-500 ">
       {movies && movies.map((movie, index) =>  <MovieItem id={movie._id} title={movie.title} posterUrl={movie.posterUrl} releaseDate={movie.releaseDate} key={index} />
     )}
     </Box>
