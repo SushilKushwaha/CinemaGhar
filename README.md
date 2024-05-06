@@ -4,7 +4,7 @@ The Online Movie Ticket Booking App is a web application built with MERN Stack t
 
 # HomePage
 
-![Alt Text](/frontend/public/screencapture-localhost-5173-2024-04-30-14_26_03.png)
+![Alt Text](frontend/public/screencapture-localhost-5173-2024-05-06-12_57_44.png)
 
 ## Features
 
