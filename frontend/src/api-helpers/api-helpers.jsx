@@ -27,3 +27,22 @@ export const getAllNextMovies = async () => {
   return data;
  
 };
+
+export const sendUserAuthRequest = async (data, signup) => {
+
+  const res = await axios.post(`http://localhost:5000/user/${signup ? "signup" : "signin"}`, {
+    mobileNumber: signup ? data.mobileNumber : "",
+    email: data.email,
+    dateOfBirth: signup ? data.dateOfBirth : "",
+    fullName: signup ? data.fullName : "",
+    password: data.password,
+  }).catch((error) => console.log(error));
+
+  if (res.status !== 200 && res.status !== 201) {
+    return console.log("Invalid Data");
+  }
+
+  const resdata = await res.data;
+  return resdata;
+ 
+};

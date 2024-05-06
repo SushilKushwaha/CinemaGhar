@@ -22,7 +22,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(inputs);
+    onSubmit({ inputs, signup: isAdmin ? false : isSignup });
   };
 
   return (
