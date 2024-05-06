@@ -46,3 +46,19 @@ export const sendUserAuthRequest = async (data, signup) => {
   return resdata;
  
 };
+
+export const sendAdminAuthRequest = async (data) => {
+
+  const res = await axios.post("http://localhost:5000/admin/signin", {
+    email: data.email,
+    password: data.password,
+  }).catch((error) => console.log(error));
+
+  if (res.status !== 200 ) {
+    return console.log("Invalid Data");
+  }
+
+  const resdata = await res.data;
+  return resdata;
+ 
+};
