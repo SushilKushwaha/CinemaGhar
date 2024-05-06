@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { Box, Tab, Tabs } from "@mui/material";
 
 const Header = () => {
+  const [value, setValue] = useState(1);
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -53,9 +54,9 @@ const Header = () => {
             <button className="hidden sm:block mr-4">MOVIES</button>
           </Link>
           <Box display={"inline-flex"} className="ml-4">
-            <Tabs>
-              <Tab label="Admin" />
-              <Tab label="Login" />
+            <Tabs textColor="black" value={value} onChange={(e, val) => setValue(val)}>
+              <Tab label="Admin" LinkComponent={Link} to="/admin" />
+              <Tab label="Login" LinkComponent={Link} to="/auth" />
             </Tabs>
           </Box>
         </NavbarItem>
