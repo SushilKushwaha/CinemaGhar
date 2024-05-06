@@ -4,7 +4,7 @@ import { MdOutlineCancel } from "react-icons/md";
 
 const labelStyle = {mt:1 , mb:1};
 
-const AuthForm = () => {
+const AuthForm = ({ onSubmit, isAdmin }) => {
 
   const [inputs, setInputs] = useState({
       mobileNumber: "",
@@ -22,7 +22,7 @@ const AuthForm = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(inputs);
+    onSubmit(inputs);
   };
 
   return (
@@ -37,7 +37,7 @@ const AuthForm = () => {
       </Typography>
       <form onSubmit={handleSubmit}>
         <Box padding={6} display={'flex'} justifyContent={'center'} flexDirection="column" width={400} margin="auto" alignContent={"center"}>
-          {isSignup && (
+          {!isAdmin && isSignup && (
             <>
             {" "}
             <FormLabel sx={labelStyle}>Mobile No.</FormLabel>
@@ -51,7 +51,7 @@ const AuthForm = () => {
           <FormLabel sx={labelStyle}>Email</FormLabel>
           <TextField value={inputs.email}
            onChange={handleChange} margin='normal' variant='standard' type={"email"} name='email'/>
-          {isSignup && (
+          {!isAdmin && isSignup && (
             <>
             {" "}
             <FormLabel sx={labelStyle}>Date of Birth</FormLabel>
@@ -68,7 +68,10 @@ const AuthForm = () => {
           <TextField value={inputs.password}
            onChange={handleChange} margin='normal' variant='standard' type={"password"} name='password'/>
         <Button sx={{mt: 2, borderRadius: 10,}} type='submit' fullWidth variant='contained'>{isSignup ? "Signup" : "Login"}</Button>
-        <Button onClick={() => setIsSignup(!isSignup)} sx={{mt: 2, borderRadius: 10,}} fullWidth>Switch to {isSignup ? "Login" : "Signup"}</Button>
+        {!isAdmin && (
+            <Button onClick={() => setIsSignup(!isSignup)} sx={{mt: 2, borderRadius: 10,}} fullWidth>Switch to {isSignup ? "Login" : "Signup"}</Button>
+        )}
+        
         </Box>
       </form>
     </Dialog>
