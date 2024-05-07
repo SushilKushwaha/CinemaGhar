@@ -62,3 +62,17 @@ export const sendAdminAuthRequest = async (data) => {
   return resdata;
  
 };
+
+
+export const getAllMoviesDetails = async (id) => {
+
+  const res = await axios.get(`http://localhost:5000/movie/${id}`).catch((error) => console.log(error));
+
+  if (res.status !== 200) {
+    return console.log("No Data");
+  }
+
+  const resData = await res.data;
+  return resData;
+ 
+};

@@ -1,5 +1,6 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react'
+import { Link } from "react-router-dom";
 
 const MovieItem = ({title, releaseDate, posterUrl, id}) => {
   return (
@@ -16,7 +17,7 @@ const MovieItem = ({title, releaseDate, posterUrl, id}) => {
         <Typography variant='body2' color="text.secondary">
         {new Date(releaseDate).toDateString()}
       </Typography>
-        <Button size="small">Book</Button>
+        <Button LinkComponent={Link} to={`/booking/${id}`} size="small">Book</Button>
       </CardContent>
       
     </Card>

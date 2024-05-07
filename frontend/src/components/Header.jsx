@@ -69,21 +69,21 @@ const Header = () => {
               
               {!isAdminLoggedIn && !isUserLoggedIn && (
                 [
-                <Tab label="Admin" LinkComponent={Link} to="/admin" />,
-                <Tab label="Login" LinkComponent={Link} to="/auth" />
+                <Tab key={"admin"} label="Admin" LinkComponent={Link} to="/admin" />,
+                <Tab key={"user"} label="Login" LinkComponent={Link} to="/auth" />
                 ]
               )};
               {isUserLoggedIn && (
                 [
-                <Tab label="Profile" LinkComponent={Link} to="/user" />,
-                <Tab onClick={() => logout(false)} label="Logout" LinkComponent={Link} to="/" />
+                <Tab key={"profile"} label="Profile" LinkComponent={Link} to="/user" />,
+                <Tab key={"logout"} onClick={() => logout(false)} label="Logout" LinkComponent={Link} to="/" />
                 ]
               )};
               {isAdminLoggedIn && (
                 [
                   <Tab label="Add movies" LinkComponent={Link} to="/add" />,
-                <Tab label="Profile" LinkComponent={Link} to="/admin" />,
-                <Tab onClick={() => logout(true)} label="Logout" LinkComponent={Link} to="/" />
+                <Tab key={"profile"} label="Profile" LinkComponent={Link} to="/admin" />,
+                <Tab key={"logout"} onClick={() => logout(true)} label="Logout" LinkComponent={Link} to="/" />
                 ]
               )};
               
