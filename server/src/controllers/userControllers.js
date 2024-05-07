@@ -99,7 +99,7 @@ const signIn = async (req, res, next) => {
     if (!isPasswordCorrect) {
         return res.status(400).json({ message: "Incorrect Credentials"});
     }
-    return res.status(200).json({ message: "Login Successfull" });
+    return res.status(200).json({ message: "Login Successfull", id: existingUser._id });
 };
 
 const getBookingsOfUser = async (req, res, next) => {

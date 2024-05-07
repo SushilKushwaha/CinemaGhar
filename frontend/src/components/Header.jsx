@@ -54,7 +54,7 @@ const Header = () => {
             <button className="hidden sm:block mr-4">MOVIES</button>
           </Link>
           <Box display={"inline-flex"} className="ml-4">
-            <Tabs textColor="black" value={value} onChange={(e, val) => setValue(val)}>
+            <Tabs textColor="primary" value={value} onChange={(e, val) => setValue(val)}>
               <Tab label="Admin" LinkComponent={Link} to="/admin" />
               <Tab label="Login" LinkComponent={Link} to="/auth" />
             </Tabs>
