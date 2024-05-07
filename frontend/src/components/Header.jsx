@@ -5,8 +5,14 @@ import { FaSearch } from 'react-icons/fa';
 import Auth from '../components/Auth/Auth';
 import { Link } from "react-router-dom";
 import { Box, Tab, Tabs } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import { adminActions, userActions } from "../store";
 
 const Header = () => {
+
+  const dispatch = useDispatch();
+  const isAdminLoggedIn = useSelector((state)=>state.admin.isLoggedIn);
+  const isUserLoggedIn = useSelector((state)=>state.user.isLoggedIn);
   const [value, setValue] = useState(1);
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,6 +22,11 @@ const Header = () => {
       .then((data) => setMovies(data.movies))
       .catch((error) => console.log(error));
   }, []);
+
+  const logout = (isAdmin) => {
+    dispatch(isAdmin ? adminActions.logout() : userActions.logout());
+    
+  };
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
@@ -54,9 +65,28 @@ const Header = () => {
             <button className="hidden sm:block mr-4">MOVIES</button>
           </Link>
           <Box display={"inline-flex"} className="ml-4">
-            <Tabs textColor="primary" value={value} onChange={(e, val) => setValue(val)}>
-              <Tab label="Admin" LinkComponent={Link} to="/admin" />
-              <Tab label="Login" LinkComponent={Link} to="/auth" />
+            <Tabs textColor="black" value={value} onChange={(e, val) => setValue(val)}>
+              
+              {!isAdminLoggedIn && !isUserLoggedIn && (
+                [
+                <Tab label="Admin" LinkComponent={Link} to="/admin" />,
+                <Tab label="Login" LinkComponent={Link} to="/auth" />
+                ]
+              )};
+              {isUserLoggedIn && (
+                [
+                <Tab label="Profile" LinkComponent={Link} to="/user" />,
+                <Tab onClick={() => logout(false)} label="Logout" LinkComponent={Link} to="/" />
+                ]
+              )};
+              {isAdminLoggedIn && (
+                [
+                  <Tab label="Add movies" LinkComponent={Link} to="/add" />,
+                <Tab label="Profile" LinkComponent={Link} to="/admin" />,
+                <Tab onClick={() => logout(true)} label="Logout" LinkComponent={Link} to="/" />
+                ]
+              )};
+              
             </Tabs>
           </Box>
         </NavbarItem>
