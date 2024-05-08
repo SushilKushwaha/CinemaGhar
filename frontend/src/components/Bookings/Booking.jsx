@@ -1,18 +1,28 @@
 import React, { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { getAllMoviesDetails } from '../../api-helpers/api-helpers';
-import { Box, Typography } from '@mui/material';
+import { Box, Button, FormLabel, TextField, Typography } from '@mui/material';
 
 const Booking = () => {
 
   const [movie, setMovie] = useState();
+  const [inputs, setInputs] = useState({ seatNumber: "", date: "" });
   const id = useParams().id;
   console.log(id);
 
   useEffect(() => {
       getAllMoviesDetails(id).then((res) => setMovie(res.movie)).catch((error) => console.log(error));
   },[id]);
-  console.log(movie);
+  const handleChange = (e) => {
+      setInputs((prevState) => ({
+        ...prevState,
+        [e.target.name] : e.target.value,
+      }));
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(inputs);
+  };
 
   return (
     <div>
@@ -23,7 +33,7 @@ const Booking = () => {
           </Typography>
           <Box display={"flex"} justifyContent={"center"}>
             <Box display={"flex"} justifyContent={"column"} flexDirection="column" padding={3} width="50%" marginRight={"auto"}>
-              <img width="30%" height={"300px"} src={movie.posterUrl} alt={movie.title} />
+              <img width="40%" height={"200px"} src={movie.posterUrl} alt={movie.title} />
               <Box width={"80%"} marginTop={3} padding={2}>
                 <Typography paddingTop={2}>
                   {movie.description}
@@ -35,8 +45,20 @@ const Booking = () => {
                   Release Date: {new Date(movie.releaseDate).toDateString()}
                 </Typography>
               </Box>
-
             </Box>
+            <Box  width={"50%"} paddingTop={3}>
+                <form onSubmit={handleSubmit}>
+                  <Box padding={5} margin={"auto"} display="flex" flexDirection={"column"}>
+                    <FormLabel>Seat Number</FormLabel>
+                    <TextField value={inputs.seatNumber} onChange={handleChange} name='seatNumber' type={"number"} margin='normal' variant='standard' />
+                    <FormLabel>Booking Date</FormLabel>
+                    <TextField value={inputs.date} onChange={handleChange} name='date' type={"date"} margin='normal' variant='standard' />
+                    <Button type='submit' sx={{mt: 3}}>Book Now</Button>
+
+                  </Box>
+                </form>
+
+              </Box>
 
           </Box>
         </Fragment>
