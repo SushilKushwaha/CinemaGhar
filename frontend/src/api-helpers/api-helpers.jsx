@@ -76,3 +76,21 @@ export const getAllMoviesDetails = async (id) => {
   return resData;
  
 };
+
+export const newBooking = async (data) => {
+
+  const res = await axios.post("http://localhost:5000/booking", {
+    movie: data.movie,
+    seatNumber: data.seatNumber,
+    date: data.date,
+    user: localStorage.getItem("userId"),
+  }).catch((error) => console.log(error));
+
+  if (res.status !== 201) {
+    return console.log("Invalid Data");
+  }
+
+  const resdata = await res.data;
+  return resdata;
+ 
+};

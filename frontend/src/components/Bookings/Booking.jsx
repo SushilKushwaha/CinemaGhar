@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getAllMoviesDetails } from '../../api-helpers/api-helpers';
+import { getAllMoviesDetails, newBooking } from '../../api-helpers/api-helpers';
 import { Box, Button, FormLabel, IconButton, TextField, Typography } from '@mui/material';
 import { RiSofaLine } from "react-icons/ri";
 
@@ -27,6 +27,9 @@ const Booking = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(inputs);
+    newBooking({ ...inputs, movie: movie._id })
+    .then((res) => console.log(res))
+    .catch((error) => console.log(error));
   };
 
   const handleSeatClick = (seat) => {
