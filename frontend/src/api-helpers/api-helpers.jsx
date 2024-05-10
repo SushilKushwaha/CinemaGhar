@@ -135,3 +135,29 @@ export const getUserDetails = async () => {
   return resData;
  
 };
+
+export const addMovie = async (data) => {
+
+  const res = await axios.post("http://localhost:5000/movie", {
+    title: data.title,
+    description: data.description,
+    actors: data.actors,
+    releaseDate: data.releaseDate,
+    posterUrl: data.posterUrl,
+    featured: data.featured,
+    admin: localStorage.getItem("adminId"),
+  },
+{
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+}).catch((error) => console.log(error));
+
+  if (res.status !== 201) {
+    return console.log("Admin Authorization Error");
+  }
+
+  const resdata = await res.data;
+  return resdata;
+ 
+};
