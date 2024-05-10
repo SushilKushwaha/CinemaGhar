@@ -97,7 +97,7 @@ const deleteBookingById = async (req, res, next) => {
   if (!booking) {
     return res.status(500).json({ message: "Unable to Delete" });
   }
-  return res.status(200).json({ message: "Successfully Booking Deleted" });
+  return res.status(200).json({ message: "Booking Deleted Successfully" });
 };
 
 module.exports = {newBooking, getBookingById, deleteBookingById};

@@ -94,3 +94,44 @@ export const newBooking = async (data) => {
   return resdata;
  
 };
+
+export const getUserBooking = async () => {
+
+  const id = localStorage.getItem("userId");
+  const res = await axios.get(`http://localhost:5000/user/bookings/${id}`).catch((error) => console.log(error));
+
+  if (res.status !== 200) {
+    return console.log("No Tickets Bookings");
+  }
+
+  const resData = await res.data;
+  return resData;
+ 
+};
+
+export const deleteBookingById = async (id) => {
+
+  const res = await axios.delete(`http://localhost:5000/booking/${id}`).catch((error) => console.log(error));
+
+  if (res.status !== 200) {
+    return console.log("Unable To Delete Bookings");
+  }
+
+  const resData = await res.data;
+  return resData;
+ 
+};
+
+export const getUserDetails = async () => {
+
+  const id = localStorage.getItem("userId");
+  const res = await axios.get(`http://localhost:5000/user/${id}`).catch((error) => console.log(error));
+
+  if (res.status !== 200) {
+    return console.log("User Details Not Found");
+  }
+
+  const resData = await res.data;
+  return resData;
+ 
+};
