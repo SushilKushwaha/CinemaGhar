@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export const getAllMovies = async () => {
 
-  const res = await axios.get("http://localhost:5000/movie").catch((error) => console.log(error));
+  const res = await axios.get("cinema-ghar-steel.vercel.app").catch((error) => console.log(error));
 
   if (res.status !== 200) {
     return console.log("No Data");
