@@ -1,6 +1,5 @@
 
 import Header from "./components/Header";
-import {NextUIProvider} from "@nextui-org/react";
 import { Routes, Route, BrowserRouter} from "react-router-dom";
 import Footers from "./components/Footer";
 import HomePage from "./components/HomePage";
@@ -13,6 +12,7 @@ import { adminActions, userActions } from "./store";
 import Booking from "./components/Bookings/Booking";
 import UserProfile from "./profile/UserProfile";
 import AddMovies from "./components/Movies/AddMovies";
+import AdminProfile from "./profile/AdminProfile";
 
 
 function App() {
@@ -43,6 +43,7 @@ function App() {
             <Route path="/admin" element={<Admin />} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/add" element={<AddMovies />} />
+            <Route path="/user-admin" element={<AdminProfile />} />
             <Route path="/user" element={<UserProfile />} />
             <Route path="/booking/:id" element={<Booking />} />
           </Routes>

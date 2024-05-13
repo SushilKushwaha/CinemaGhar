@@ -82,7 +82,7 @@ const Header = () => {
               {isAdminLoggedIn && (
                 [
                   <Tab label="Add movies" LinkComponent={Link} to="/add" />,
-                <Tab key={"profile"} label="Profile" LinkComponent={Link} to="/admin" />,
+                <Tab key={"profile"} label="Profile" LinkComponent={Link} to="/user-admin" />,
                 <Tab key={"logout"} onClick={() => logout(true)} label="Logout" LinkComponent={Link} to="/" />
                 ]
               )};
