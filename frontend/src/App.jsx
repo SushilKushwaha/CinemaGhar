@@ -30,7 +30,7 @@ function App() {
     } else if (localStorage.getItem("adminId")) {
         dispatch(adminActions.login());
     }
-  },[]);
+  }, [ dispatch]);
 
   return <BrowserRouter>
     
@@ -40,12 +40,31 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/movies" element={<Movies />} />
-            <Route path="/admin" element={<Admin />} />
-            <Route path="/auth" element={<Auth />} />
-            <Route path="/add" element={<AddMovies />} />
-            <Route path="/user-admin" element={<AdminProfile />} />
-            <Route path="/user" element={<UserProfile />} />
-            <Route path="/booking/:id" element={<Booking />} />
+            {!isUserLoggedIn && !isAdminLoggedIn && (
+              <>
+              {" "}
+              <Route path="/admin" element={<Admin />} />
+              <Route path="/auth" element={<Auth />} />
+              </>
+            )}
+
+            {isUserLoggedIn && !isAdminLoggedIn && (
+              <>
+              {" "}
+              <Route path="/user" element={<UserProfile />} />
+              <Route path="/booking/:id" element={<Booking />} />
+              </>
+            )}
+            
+            {isAdminLoggedIn && !isUserLoggedIn && (
+              <>
+              {" "}
+              <Route path="/add" element={<AddMovies />} />
+              <Route path="/user-admin" element={<AdminProfile />} />
+            
+              </>
+            )}
+           
           </Routes>
           
         </section>

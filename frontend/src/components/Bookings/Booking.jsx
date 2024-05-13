@@ -3,8 +3,10 @@ import { useParams } from 'react-router-dom';
 import { getAllMoviesDetails, newBooking } from '../../api-helpers/api-helpers';
 import { Box, Button, FormLabel, IconButton, TextField, Typography } from '@mui/material';
 import { RiSofaLine } from "react-icons/ri";
+import { useSelector } from 'react-redux';
 
 const Booking = () => {
+
   const [movie, setMovie] = useState();
   const [inputs, setInputs] = useState({ seatNumber: "", date: "" });
   const [selectedSeats, setSelectedSeats] = useState([]);

@@ -94,7 +94,7 @@ const getMoviesById = async (req, res, next) => {
   try {
     movie = await Movie.findById(id);
   } catch (error) {
-    return console.log(err);
+    return console.log(error);
   }
   if(!movie) {
     return res.status(404).json({ message: "Invalid movie Id" });

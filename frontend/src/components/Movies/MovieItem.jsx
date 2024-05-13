@@ -17,7 +17,7 @@ const MovieItem = ({title, releaseDate, posterUrl, id}) => {
         <Typography variant='body2' color="text.secondary">
         {new Date(releaseDate).toDateString()}
       </Typography>
-        <Button LinkComponent={Link} to={`/booking/${id}`} size="small">Book</Button>
+        <Button variant='contained' LinkComponent={Link} to={`/booking/${id}`} size="small">Book</Button>
       </CardContent>
       
     </Card>

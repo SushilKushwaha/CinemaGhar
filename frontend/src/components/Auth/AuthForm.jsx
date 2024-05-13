@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Box, Button, Dialog, FormLabel, IconButton, TextField, Typography } from "@mui/material";
 import { MdOutlineCancel } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const labelStyle = {mt:1 , mb:1};
 
@@ -28,7 +29,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
   return (
     <Dialog PaperProps={{ style: { borderRadius: 20}}} open={true}>
       <Box sx={{ ml: "auto", padding: 1}}>
-        <IconButton>
+        <IconButton LinkComponent={Link} to="/" >
           <MdOutlineCancel />
         </IconButton>
       </Box>
