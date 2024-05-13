@@ -6,6 +6,10 @@ The Online Movie Ticket Booking App is a web application built with MERN Stack t
 
 ![Alt Text](frontend/public/screencapture-localhost-5173-2024-05-06-12_57_44.png)
 
+## vercel Deployment
+
+https://cinema-ghar-gold.vercel.app/
+
 ## Features
 
 - Movie and show listings: The app displays a list of available movies and shows along with their details such as title, genre, duration, and showtimes.
